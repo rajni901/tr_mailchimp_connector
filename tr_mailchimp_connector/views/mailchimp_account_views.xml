@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_mailchimp_account_form" model="ir.ui.view">
+        <field name="name">mailchimp.account.form</field>
+        <field name="model">mailchimp.account</field>
+        <field name="arch" type="xml">
+            <form string="MailChimp Account">
+                <sheet>
+                    <!-- Smart Buttons -->
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_audiences" type="object"
+                                class="oe_stat_button" icon="fa-users">
+                            <field name="audience_count" widget="statinfo" string="Audiences"/>
+                        </button>
+                        <button name="action_view_campaigns" type="object"
+                                class="oe_stat_button" icon="fa-envelope">
+                            <field name="campaign_count" widget="statinfo" string="Campaigns"/>
+                        </button>
+                        <button name="action_view_logs" type="object"
+                                class="oe_stat_button" icon="fa-list">
+                            <field name="log_count" widget="statinfo" string="Logs"/>
+                        </button>
+                    </div>
+
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Account Name"/></h1>
+                        <div class="text-muted" invisible="not account_name">
+                            Connected to: <field name="account_name" readonly="1"/>
+                            (<field name="data_center" readonly="1"/>)
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="o_row mb-3">
+                        <button name="action_test_connection" type="object"
+                                string="🔗 Test Connection" class="btn-primary"/>
+                        <button name="action_import_audiences" type="object"
+                                string="⬇ Import Audiences" class="btn-success"/>
+                        <button name="action_export_audiences" type="object"
+                                string="⬆ Export Audiences" class="btn-secondary"/>
+                        <button name="action_import_contacts" type="object"
+                                string="⬇ Import Contacts" class="btn-success"/>
+                        <button name="action_export_contacts" type="object"
+                                string="⬆ Export Contacts" class="btn-secondary"/>
+                        <button name="action_import_campaigns" type="object"
+                                string="⬇ Import Campaigns" class="btn-success"/>
+                        <button name="action_import_stats" type="object"
+                                string="📊 Import Stats" class="btn-info"/>
+                        <button name="action_register_webhooks" type="object"
+                                string="🔔 Register Webhooks" class="btn-warning"/>
+                    </div>
+
+                    <group>
+                        <group string="Connection">
+                            <field name="api_key" password="True"
+                                   placeholder="xxxxxxxxxxxxxxxxxxxxxxxx-us1"/>
+                            <field name="data_center" readonly="1"/>
+                            <field name="company_id"/>
+                        </group>
+                        <group string="Auto Sync">
+                            <field name="auto_sync_audiences"/>
+                            <field name="auto_sync_contacts"/>
+                            <field name="auto_import_stats"/>
+                        </group>
+                    </group>
+
+                    <group string="Last Sync">
+                        <group>
+                            <field name="last_audience_sync" readonly="1"/>
+                            <field name="last_contact_sync" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="last_campaign_sync" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_mailchimp_account_list" model="ir.ui.view">
+        <field name="name">mailchimp.account.list</field>
+        <field name="model">mailchimp.account</field>
+        <field name="arch" type="xml">
+            <list string="MailChimp Accounts">
+                <field name="name"/>
+                <field name="account_name"/>
+                <field name="data_center"/>
+                <field name="audience_count"/>
+                <field name="campaign_count"/>
+                <field name="last_contact_sync"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_mailchimp_account" model="ir.actions.act_window">
+        <field name="name">MailChimp Accounts</field>
+        <field name="res_model">mailchimp.account</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_mailchimp_root" name="MailChimp" sequence="85"
+              web_icon="tr_mailchimp_connector,static/description/icon.png"/>
+    <menuitem id="menu_mailchimp_accounts" name="Accounts"
+              parent="menu_mailchimp_root" action="action_mailchimp_account" sequence="1"/>
+    <menuitem id="menu_mailchimp_audiences" name="Audiences"
+              parent="menu_mailchimp_root" action="action_mailchimp_audiences" sequence="2"/>
+    <menuitem id="menu_mailchimp_campaigns" name="Campaigns"
+              parent="menu_mailchimp_root" action="action_mailchimp_campaigns" sequence="3"/>
+    <menuitem id="menu_mailchimp_logs" name="Sync Logs"
+              parent="menu_mailchimp_root" action="action_mailchimp_logs" sequence="10"/>
+
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_mailing_mailchimp_form" model="ir.ui.view">
+        <field name="name">mailing.mailing.mailchimp.form</field>
+        <field name="model">mailing.mailing</field>
+        <field name="inherit_id" ref="mass_mailing.mailing_mailing_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="MailChimp" name="mailchimp_page"
+                      invisible="not mailchimp_id">
+                    <group>
+                        <group string="MailChimp Info">
+                            <field name="mailchimp_account_id" readonly="1"/>
+                            <field name="mailchimp_id" readonly="1"/>
+                            <field name="mailchimp_status" readonly="1"/>
+                        </group>
+                        <group string="Campaign Statistics">
+                            <field name="mailchimp_sends" readonly="1"/>
+                            <field name="mailchimp_opens" readonly="1"/>
+                            <field name="mailchimp_clicks" readonly="1"/>
+                            <field name="mailchimp_bounces" readonly="1"/>
+                            <field name="mailchimp_unsubscribes" readonly="1"/>
+                            <field name="mailchimp_open_rate" readonly="1" string="Open Rate %"/>
+                            <field name="mailchimp_click_rate" readonly="1" string="Click Rate %"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_mailchimp_campaigns" model="ir.actions.act_window">
+        <field name="name">MailChimp Campaigns</field>
+        <field name="res_model">mailing.mailing</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('mailchimp_id', '!=', False)]</field>
+    </record>
+
+</odoo>

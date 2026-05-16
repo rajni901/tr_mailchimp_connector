@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mailchimp_account,mailchimp.account,model_mailchimp_account,base.group_user,1,1,1,1
+access_mailchimp_log,mailchimp.log,model_mailchimp_log,base.group_user,1,1,1,1
+access_mailchimp_sync_wizard,mailchimp.sync.wizard,model_mailchimp_sync_wizard,base.group_user,1,1,1,1

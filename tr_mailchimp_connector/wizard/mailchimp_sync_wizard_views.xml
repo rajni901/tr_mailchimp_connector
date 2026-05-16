@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_mailchimp_sync_wizard_form" model="ir.ui.view">
+        <field name="name">mailchimp.sync.wizard.form</field>
+        <field name="model">mailchimp.sync.wizard</field>
+        <field name="arch" type="xml">
+            <form string="MailChimp Sync">
+                <group>
+                    <field name="account_id"/>
+                    <field name="operation"/>
+                </group>
+                <div invisible="not result_message" class="alert alert-info mt-2">
+                    <field name="result_message" readonly="1" nolabel="1"/>
+                </div>
+                <footer>
+                    <button name="action_sync" type="object"
+                            string="Start Sync" class="btn-primary"/>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

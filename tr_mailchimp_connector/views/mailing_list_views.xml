@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_mailing_list_mailchimp_form" model="ir.ui.view">
+        <field name="name">mailing.list.mailchimp.form</field>
+        <field name="model">mailing.list</field>
+        <field name="inherit_id" ref="mass_mailing.mailing_list_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="MailChimp" invisible="not mailchimp_id and not mailchimp_account_id">
+                    <field name="mailchimp_account_id" readonly="1"/>
+                    <field name="mailchimp_id" readonly="1"/>
+                    <field name="mailchimp_last_sync" readonly="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_mailchimp_audiences" model="ir.actions.act_window">
+        <field name="name">MailChimp Audiences</field>
+        <field name="res_model">mailing.list</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('mailchimp_id', '!=', False)]</field>
+    </record>
+
+</odoo>
