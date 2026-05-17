@@ -198,23 +198,46 @@ class MailChimpAccount(models.Model):
     def action_register_webhooks(self):
         self.ensure_one()
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+
+        if 'localhost' in base_url or '127.0.0.1' in base_url:
+            raise UserError(_(
+                'Webhooks require a publicly accessible URL.\n\n'
+                f'Your current URL is: {base_url}\n\n'
+                'Webhooks only work on a live server with a public domain (e.g. https://yourodoo.com).\n'
+                'For local testing, use the manual Import buttons instead.'
+            ))
+
         audiences = self.env['mailing.list'].search([
             ('mailchimp_account_id', '=', self.id),
             ('mailchimp_id', '!=', False),
         ])
+        if not audiences:
+            raise UserError(_('No audiences found. Please import audiences first.'))
+
+        webhook_url = f'{base_url}/mailchimp/webhook/{self.id}'
         registered = 0
         for audience in audiences:
             try:
                 self._api_post(f'lists/{audience.mailchimp_id}/webhooks', {
-                    'url': f'{base_url}/mailchimp/webhook/{self.id}',
+                    'url': webhook_url,
                     'events': {'subscribe': True, 'unsubscribe': True,
                                'profile': True, 'cleaned': True, 'campaign': True},
                     'sources': {'user': True, 'admin': True, 'api': True},
                 })
                 registered += 1
             except Exception as e:
-                self._log('webhook', 'warning', str(e))
-        return self._notify(_(f'Registered webhooks for {registered} audiences.'))
+                self._log('webhook', 'warning', f'Audience {audience.name}: {str(e)}')
+
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': _('Webhooks Registered'),
+                'message': _(f'Registered webhooks for {registered} audiences.\nURL: {webhook_url}'),
+                'type': 'success',
+                'sticky': True,
+            },
+        }
 
     @api.model
     def _cron_sync_audiences(self):
