@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; color: #333; line-height: 1.6; }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #1a1a5e 0%, #6c3fc5 100%);
+            color: #fff;
+            padding: 48px 40px;
+            text-align: center;
+        }
+        .hero h1 { font-size: 32px; font-weight: 900; margin-bottom: 10px; }
+        .hero p  { font-size: 16px; opacity: 0.85; max-width: 600px; margin: 0 auto 16px; }
+        .hero .tagline { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.6; }
+
+        /* Badges */
+        .badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
+        .badge { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+                 color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 12px; }
+
+        /* Section */
+        .section { padding: 40px; max-width: 960px; margin: 0 auto; }
+        h2 { color: #1a1a5e; font-size: 22px; margin-bottom: 20px;
+             border-bottom: 3px solid #6c3fc5; padding-bottom: 8px; }
+        h3 { color: #6c3fc5; font-size: 15px; margin-bottom: 8px; }
+
+        /* Feature Grid */
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+        .feature-card { background: #f8f9ff; border-left: 4px solid #1a1a5e;
+                        padding: 16px; border-radius: 4px; }
+        .feature-card .icon { font-size: 24px; margin-bottom: 8px; }
+        .feature-card h3 { font-size: 14px; color: #1a1a5e; margin-bottom: 6px; }
+        .feature-card p { font-size: 12px; color: #666; }
+
+        /* Steps */
+        .steps { counter-reset: step; }
+        .step { display: flex; gap: 20px; margin-bottom: 28px; align-items: flex-start; }
+        .step-num { background: linear-gradient(135deg, #1a1a5e, #6c3fc5);
+                    color: #fff; width: 36px; height: 36px; border-radius: 50%;
+                    display: flex; align-items: center; justify-content: center;
+                    font-weight: 800; font-size: 16px; flex-shrink: 0; }
+        .step-content h3 { color: #1a1a5e; margin-bottom: 6px; }
+        .step-content p  { color: #555; font-size: 13px; }
+        .step-content code { background: #f0f0f0; padding: 2px 8px; border-radius: 3px;
+                             font-size: 12px; color: #6c3fc5; }
+        .step-content ul { margin-top: 8px; padding-left: 18px; }
+        .step-content ul li { font-size: 13px; color: #555; margin-bottom: 4px; }
+
+        /* Table */
+        table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+        th { background: #1a1a5e; color: #fff; padding: 10px 14px; text-align: left; }
+        td { padding: 9px 14px; border-bottom: 1px solid #eee; }
+        tr:nth-child(even) td { background: #f8f9ff; }
+        .check { color: #2e7d32; font-weight: 700; }
+        .cross  { color: #c62828; }
+
+        /* Highlight box */
+        .highlight { background: linear-gradient(135deg, #1a1a5e, #6c3fc5);
+                     color: #fff; padding: 28px 32px; border-radius: 8px;
+                     margin: 32px 0; text-align: center; }
+        .highlight h2 { color: #fff; border-color: rgba(255,255,255,0.3); }
+        .highlight p { opacity: 0.9; margin-top: 8px; }
+
+        /* Alert */
+        .alert { background: #fff8e1; border-left: 4px solid #f0ad4e;
+                 padding: 14px 18px; border-radius: 4px; font-size: 13px;
+                 margin: 16px 0; color: #6d4c00; }
+        .alert strong { color: #e65100; }
+
+        /* Code block */
+        .code-block { background: #1e1e2e; color: #cdd6f4; padding: 14px 18px;
+                      border-radius: 6px; font-size: 12px; font-family: monospace;
+                      margin: 10px 0; overflow-x: auto; }
+
+        /* CTA */
+        .cta { text-align: center; padding: 40px; background: #f8f9ff; }
+        .cta h2 { color: #1a1a5e; margin-bottom: 10px; }
+        .cta p { color: #666; margin-bottom: 16px; }
+        .cta a { background: linear-gradient(135deg, #1a1a5e, #6c3fc5);
+                 color: #fff; padding: 12px 28px; border-radius: 6px;
+                 text-decoration: none; font-weight: 700; display: inline-block; }
+    </style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+    <h1>MailChimp Connector for Odoo 19</h1>
+    <p>Sync Contacts, Audiences and Campaigns bi-directionally between MailChimp and Odoo — automatically.</p>
+    <div class="tagline">by Technical Rajni · Solutions | Automation | Innovation</div>
+    <div class="badges">
+        <span class="badge">Odoo 19</span>
+        <span class="badge">Community &amp; Enterprise</span>
+        <span class="badge">Bi-Directional Sync</span>
+        <span class="badge">Webhook Support</span>
+        <span class="badge">Campaign Analytics</span>
+        <span class="badge">3 Cron Jobs</span>
+    </div>
+</div>
+
+<!-- Why -->
+<div class="section">
+    <h2>Why You Need This</h2>
+    <table>
+        <tr>
+            <th>Without Integration</th>
+            <th>With MailChimp Connector</th>
+        </tr>
+        <tr>
+            <td>✗ Manually export contacts to CSV</td>
+            <td class="check">✓ One-click sync of all contacts</td>
+        </tr>
+        <tr>
+            <td>✗ Import CSV into MailChimp every time</td>
+            <td class="check">✓ Automated sync every hour</td>
+        </tr>
+        <tr>
+            <td>✗ Switch between two platforms constantly</td>
+            <td class="check">✓ Manage everything from Odoo</td>
+        </tr>
+        <tr>
+            <td>✗ No campaign stats visible in Odoo</td>
+            <td class="check">✓ Opens, clicks, bounces in Odoo</td>
+        </tr>
+        <tr>
+            <td>✗ Unsubscribes go unnoticed</td>
+            <td class="check">✓ Real-time webhook updates</td>
+        </tr>
+    </table>
+</div>
+
+<!-- Features -->
+<div class="section">
+    <h2>Key Features</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="icon">⬇</div>
+            <h3>Import Audiences</h3>
+            <p>Import MailChimp Lists/Audiences as Odoo Mailing Lists in one click.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">⬆</div>
+            <h3>Export Audiences</h3>
+            <p>Push Odoo Mailing Lists to MailChimp as new Audiences.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">👥</div>
+            <h3>Contacts Bi-Sync</h3>
+            <p>Import MailChimp members and export Odoo contacts both ways.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">📧</div>
+            <h3>Campaign Sync</h3>
+            <p>Import MailChimp campaigns into Odoo Email Marketing.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">📊</div>
+            <h3>Campaign Analytics</h3>
+            <p>Auto-import opens, clicks, bounces and unsubscribes into Odoo.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🔔</div>
+            <h3>Webhook Support</h3>
+            <p>Real-time subscribe/unsubscribe updates from MailChimp to Odoo.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">⏱</div>
+            <h3>3 Scheduled Actions</h3>
+            <p>Auto-sync audiences, contacts and campaign stats on schedule.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">📋</div>
+            <h3>Sync Logs</h3>
+            <p>Full error tracking and sync history with status indicators.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Configuration Steps -->
+<div class="section">
+    <h2>⚙️ Configuration Steps</h2>
+
+    <div class="steps">
+
+        <!-- Step 1 -->
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+                <h3>Install the Module</h3>
+                <p>Go to <strong>Apps → Search "MailChimp Connector" → Install</strong></p>
+                <p>After install, a new <strong>MailChimp</strong> menu appears in the top navigation.</p>
+            </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+                <h3>Get Your MailChimp API Key</h3>
+                <ul>
+                    <li>Sign up or login at <code>mailchimp.com</code> (free plan: up to 500 contacts)</li>
+                    <li>Click your <strong>Profile icon → Account &amp; Billing</strong></li>
+                    <li>Go to <strong>Extras → API Keys</strong></li>
+                    <li>Click <strong>"Create A Key"</strong></li>
+                    <li>Copy the key — format: <code>xxxxxxxxxxxxxxxxxxxxxx-us21</code></li>
+                </ul>
+                <div class="alert">
+                    <strong>Note:</strong> The part after the dash (e.g. <code>us21</code>) is your Data Center.
+                    Keep this key safe — it gives full access to your MailChimp account.
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+                <h3>Add MailChimp Account in Odoo</h3>
+                <ul>
+                    <li>Go to <strong>MailChimp → Accounts → New</strong></li>
+                    <li>Enter <strong>Account Name</strong> (e.g. My MailChimp Store)</li>
+                    <li>Paste your <strong>API Key</strong></li>
+                    <li>Click <strong>Save</strong></li>
+                    <li>Click <strong>🔗 Test Connection</strong> → should show your account name</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+                <h3>Import Your Audiences</h3>
+                <ul>
+                    <li>Click <strong>⬇ Import Audiences</strong></li>
+                    <li>Your MailChimp lists appear in <strong>MailChimp → Audiences</strong></li>
+                    <li>Also visible in <strong>Email Marketing → Mailing Lists</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+                <h3>Import Contacts</h3>
+                <ul>
+                    <li>Click <strong>⬇ Import Contacts</strong></li>
+                    <li>All subscribed members are imported as <strong>Mailing Contacts</strong> in Odoo</li>
+                    <li>View them in <strong>Email Marketing → Mailing Lists → Contacts</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="step">
+            <div class="step-num">6</div>
+            <div class="step-content">
+                <h3>Export Contacts to MailChimp</h3>
+                <ul>
+                    <li>Click <strong>⬆ Export Contacts</strong></li>
+                    <li>All Odoo mailing contacts are pushed to your MailChimp audiences</li>
+                    <li>Uses MD5 email hash — no duplicates created</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Step 7 -->
+        <div class="step">
+            <div class="step-num">7</div>
+            <div class="step-content">
+                <h3>Import Campaigns &amp; Statistics</h3>
+                <ul>
+                    <li>Click <strong>⬇ Import Campaigns</strong> to pull all campaigns into Odoo</li>
+                    <li>Click <strong>📊 Import Stats</strong> to update opens, clicks, bounces</li>
+                    <li>View stats in the campaign form → <strong>MailChimp</strong> tab</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Step 8 -->
+        <div class="step">
+            <div class="step-num">8</div>
+            <div class="step-content">
+                <h3>Enable Webhooks (Real-Time Updates)</h3>
+                <ul>
+                    <li>First import audiences (Step 4)</li>
+                    <li>Click <strong>🔔 Register Webhooks</strong></li>
+                    <li>Odoo will auto-register webhook URLs in MailChimp</li>
+                    <li>Now unsubscribes/subscribes reflect in Odoo <strong>instantly</strong></li>
+                </ul>
+                <div class="alert">
+                    <strong>Note:</strong> Webhooks only work if your Odoo is accessible from the internet
+                    (not localhost). For production servers this works automatically.
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 9 -->
+        <div class="step">
+            <div class="step-num">9</div>
+            <div class="step-content">
+                <h3>Enable Auto-Sync (Scheduled Actions)</h3>
+                <ul>
+                    <li>Go to <strong>Settings → Technical → Scheduled Actions</strong></li>
+                    <li>Enable any of these:</li>
+                </ul>
+                <table style="margin-top:10px;">
+                    <tr>
+                        <th>Cron Job</th>
+                        <th>Interval</th>
+                        <th>What it does</th>
+                    </tr>
+                    <tr>
+                        <td>MailChimp: Sync Audiences</td>
+                        <td>Every 6 hours</td>
+                        <td>Import audiences from MailChimp</td>
+                    </tr>
+                    <tr>
+                        <td>MailChimp: Sync Contacts</td>
+                        <td>Every 1 hour</td>
+                        <td>Import + Export contacts bi-directionally</td>
+                    </tr>
+                    <tr>
+                        <td>MailChimp: Import Campaign Stats</td>
+                        <td>Every 12 hours</td>
+                        <td>Update campaign analytics in Odoo</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Sync Matrix -->
+<div class="section">
+    <h2>Sync Matrix</h2>
+    <table>
+        <tr>
+            <th>Data</th>
+            <th>MailChimp → Odoo</th>
+            <th>Odoo → MailChimp</th>
+            <th>Auto (Cron)</th>
+        </tr>
+        <tr>
+            <td>Audiences / Lists</td>
+            <td class="check">✓ Import</td>
+            <td class="check">✓ Export</td>
+            <td class="check">✓ Every 6h</td>
+        </tr>
+        <tr>
+            <td>Contacts / Members</td>
+            <td class="check">✓ Import</td>
+            <td class="check">✓ Export</td>
+            <td class="check">✓ Every 1h</td>
+        </tr>
+        <tr>
+            <td>Campaigns</td>
+            <td class="check">✓ Import</td>
+            <td class="check">✓ Export</td>
+            <td class="cross">Manual</td>
+        </tr>
+        <tr>
+            <td>Campaign Statistics</td>
+            <td class="check">✓ Import</td>
+            <td class="cross">N/A</td>
+            <td class="check">✓ Every 12h</td>
+        </tr>
+        <tr>
+            <td>Unsubscribes</td>
+            <td class="check">✓ Webhook</td>
+            <td class="cross">N/A</td>
+            <td class="check">✓ Real-time</td>
+        </tr>
+    </table>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+    <h2>Ready to Connect Odoo with MailChimp?</h2>
+    <p>Install now and start syncing in minutes. Free support included.</p>
+    <a href="mailto:magentodeveloper1993@gmail.com">Contact Support</a>
+    <p style="margin-top:16px; font-size:12px; color:#999;">
+        Website: <a href="https://www.technicalrajni.com" style="color:#6c3fc5;">www.technicalrajni.com</a>
+        &nbsp;|&nbsp; Email: magentodeveloper1993@gmail.com
+    </p>
+</div>
+
+</body>
+</html>
