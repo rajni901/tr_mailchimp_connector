@@ -6,7 +6,7 @@
         <field name="model">mailing.list</field>
         <field name="inherit_id" ref="mass_mailing.mailing_list_view_form_simplified"/>
         <field name="arch" type="xml">
-            <xpath expr="//sheet" position="inside">
+            <xpath expr="//group" position="after">
                 <group string="MailChimp" invisible="not mailchimp_id and not mailchimp_account_id">
                     <field name="mailchimp_account_id" readonly="1"/>
                     <field name="mailchimp_id" readonly="1"/>
