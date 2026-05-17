@@ -27,11 +27,11 @@ Features:
     'data': [
         'security/ir.model.access.csv',
         'data/scheduled_actions.xml',
-        'views/mailchimp_account_views.xml',
         'views/mailchimp_log_views.xml',
         'views/mailing_list_views.xml',
         'views/mailing_views.xml',
         'wizard/mailchimp_sync_wizard_views.xml',
+        'views/mailchimp_account_views.xml',
     ],
     'images': ['static/description/banner.png'],
     'installable': True,
