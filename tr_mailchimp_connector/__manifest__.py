@@ -37,6 +37,6 @@ Features:
     'installable': True,
     'application': True,
     'auto_install': False,
-    'price': 49.00,
+    'price': 5.00,
     'currency': 'USD',
 }
