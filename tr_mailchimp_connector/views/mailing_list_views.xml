@@ -4,7 +4,7 @@
     <record id="view_mailing_list_mailchimp_form" model="ir.ui.view">
         <field name="name">mailing.list.mailchimp.form</field>
         <field name="model">mailing.list</field>
-        <field name="inherit_id" ref="mass_mailing.mailing_list_view_form"/>
+        <field name="inherit_id" ref="mass_mailing.mailing_list_view_form_simplified"/>
         <field name="arch" type="xml">
             <xpath expr="//sheet" position="inside">
                 <group string="MailChimp" invisible="not mailchimp_id and not mailchimp_account_id">

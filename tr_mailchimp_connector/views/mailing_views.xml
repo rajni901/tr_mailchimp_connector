@@ -4,7 +4,7 @@
     <record id="view_mailing_mailchimp_form" model="ir.ui.view">
         <field name="name">mailing.mailing.mailchimp.form</field>
         <field name="model">mailing.mailing</field>
-        <field name="inherit_id" ref="mass_mailing.mailing_mailing_view_form"/>
+        <field name="inherit_id" ref="mass_mailing.view_mail_mass_mailing_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
                 <page string="MailChimp" name="mailchimp_page"
