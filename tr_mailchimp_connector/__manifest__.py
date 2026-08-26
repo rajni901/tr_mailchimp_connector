@@ -4,7 +4,7 @@
     'category': 'Marketing',
     'summary': 'Sync Contacts, Audiences and Campaigns between MailChimp and Odoo',
     'description': """
-MailChimp Connector — by Technical Rajni
+MailChimp Connector — by Vayu Sharma
 =========================================
 Complete bi-directional sync between MailChimp and Odoo.
 
@@ -20,8 +20,8 @@ Features:
 - Sync logs and error tracking
 - Test Connection button
     """,
-    'author': 'Technical Rajni',
-    'website': 'https://www.technicalrajni.com',
+    'author': 'Vayu Sharma',
+    'website': '',
     'license': 'OPL-1',
     'depends': ['mass_mailing', 'contacts', 'mail'],
     'data': [
